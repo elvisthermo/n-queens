@@ -1,0 +1,98 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>Javascript N-Queens</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+        <link type="text/css" href="assets/css/style.css" rel="stylesheet">
+
+        <!-- N-Queens -->
+        <link rel="stylesheet" type="text/css" href="assets-nqueens/style.css" />
+        <script type="text/javascript" src="assets-nqueens/javascript-nqueens.js"></script>
+
+        <!--[if IE]><script language="javascript" type="text/javascript" src="assets/js/flot/excanvas.min.js"></script><![endif]-->
+        <script type="text/javascript" src="assets/js/flot/jquery.min.js"></script>
+        <script type="text/javascript" src="assets/js/flot/jquery.flot.min.js"></script>
+
+    </head>
+    <body onload="NQUEENS.load();">
+
+        <div id="wrapper">
+            <div id="header">
+                <h1>Javascript N-Queens</h1>
+            </div>
+
+            <div id="main">
+
+                <div class="box">
+
+                    <!-- Intro -->
+
+                    <p>This page presents a Javascript program that solves the <a href="http://en.wikipedia.org/wiki/Eight_queens_puzzle" title="Eight Queens Puzzle at Wikipedia">N-Queens</a> problem using a very simple <a href="http://en.wikipedia.org/wiki/Genetic_algorithm" title="Genetic Algoritm at Wikipedia">Genetic Algorithm</a>.</p><br>
+    
+                    Genetic Algorithm pseudocode:
+                    <pre>
+1) Create random individuals and compute fitness value.
+
+2) For each generation:
+   2.1) Catastrophe? (first 10% of generations are catastrophe-free;
+                      catastrophe probability: 5%)
+        2.1.1) Remove all individuals.
+        2.1.2) Create random individuals and compute fitness value.
+
+    2.2) Keep top 10% individuals (based on fitness) and remove the others.
+
+    2.3) Create new individuals by mutating the remaning (swap Queen positions).
+
+    2.4) For each individual:
+         2.4.1) Compute new fitness value based on the number of collisions between Queens.
+         2.4.2) Fitness value is zero? (no collisions)
+                2.4.2.1) Solution Found.</pre>
+
+                        
+                    <p>Each individual is a group of <code>(x,y)</code> coordinates that represent the position of each Queen on the board. Individual <code>1324</code> means that the Queens positions are <code>(1,1) (2,3) (3,2) (4,4)</code>.</p>
+<pre>
+   <strong>1 2 3 4 (x)</strong>
+ <strong>1</strong> Q . . .
+ <strong>2</strong> . . Q .
+ <strong>3</strong> . Q . .
+ <strong>4</strong> . . . Q
+<strong>(y)</strong></pre>
+                        
+                </div>
+
+                <!-- Groups -->
+
+                <div  class="box">
+                    <h2>Run</h2>
+
+                    <form>
+                        <span>Queens: </span> <input type="text" value="32" class="input" style="width: 30px;" id="queensnumber" />
+
+                        <input type="button" class="submit" value="Run Once" onclick="NQUEENS.init(1);" />
+
+                        <input type="button" class="submit" value="Run 5 Times" onclick="NQUEENS.init(5);" />
+                    </form>
+
+                    <div class="cl">&nbsp;</div>
+
+
+                    <h4>Results</h4>
+                    <div id="log" class="console" style="height: 100px;"></div>
+
+                    <h4>Plot</h4>
+                    <div id="placeholder" style="width:786px;height:300px;"></div>
+
+
+                    <p style="text-align: center; color: #666;"><strong>Y Axis:</strong> score (lower is better), <strong>X Axis:</strong> Generation Number.</p>
+
+                    <h4>Solutions</h4>
+                    <div id="solutions" class="console" style="height: 200px;"></div>
+
+                </div>
+								
+            </div>
+            <div id="footer">Javascript N-Queens | <a href="http://pmav.eu">pmav.eu</a> | 30/Jul/2011 | <a href="http://validator.w3.org/check?uri=referer">Valid HTML 5</a> | This work is licensed under a <a rel="license" href="LICENSE">MIT License</a>.</div>
+        </div>
+    </body>
+</html>
